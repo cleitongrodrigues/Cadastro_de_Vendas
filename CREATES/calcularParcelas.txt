@@ -1,0 +1,27 @@
+procedure GerarParcelas(CodVenda, QtdParcelas: Integer; ValorTotal: Double);
+var
+  i: Integer;
+  ValorParcela: Double;
+  DataVencimento: TDateTime;
+begin
+  ValorParcela := ValorTotal / QtdParcelas;
+  DataVencimento := Now; // Começa a partir da data atual
+
+  for i := 1 to QtdParcelas do
+  begin
+    DataVencimento := IncMonth(DataVencimento, 1); // Cada parcela vence no mês seguinte
+
+    // Insere a parcela no banco de dados
+    with Query do
+    begin
+      SQL.Clear;
+      SQL.Add('INSERT INTO PARCELAS (Cod_Venda, Numero_Parcela, Valor_Parcela, Data_Vencimento_Parcela, Status_Parcela) ' +
+              'VALUES (:CodVenda, :NumeroParcela, :ValorParcela, :DataVencimento, 0)');
+      ParamByName('CodVenda').AsInteger := CodVenda;
+      ParamByName('NumeroParcela').AsInteger := i;
+      ParamByName('ValorParcela').AsFloat := ValorParcela;
+      ParamByName('DataVencimento').AsDateTime := DataVencimento;
+      ExecSQL;
+    end;
+  end;
+end;
