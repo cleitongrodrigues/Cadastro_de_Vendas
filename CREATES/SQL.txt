@@ -4,8 +4,8 @@ CREATE TABLE CLIENTES (
     Nome_Cliente		VARCHAR(50)		NOT NULL,
     Telefone_Cliente	VARCHAR(11)		NOT NULL,
     Sexo_Cliente		CHAR(1),
-    Endereco_Cliente	VARCHAR(50),
 );
+    Endereco_Cliente	VARCHAR(50),
 SELECT * FROM CLIENTES;
 CREATE TABLE VENDAS (
     Cod_Venda			INTEGER			PRIMARY KEY IDENTITY,

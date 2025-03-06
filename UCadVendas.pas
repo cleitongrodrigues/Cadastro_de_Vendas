@@ -38,6 +38,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure dsCadVendasStateChange(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -51,7 +52,7 @@ implementation
 
 {$R *.dfm}
 
-uses UDM;
+uses UDM, UPesqVendas;
 
 procedure TfrmCadVendas.btnCancelarClick(Sender: TObject);
 begin
@@ -75,6 +76,16 @@ end;
 procedure TfrmCadVendas.btnNovoClick(Sender: TObject);
 begin
   DM.qryCadVendas.Append;
+end;
+
+procedure TfrmCadVendas.btnPesquisarClick(Sender: TObject);
+begin
+  frmPesqVendas := TfrmPesqVendas.Create(self);
+  try
+    frmPesqVendas.ShowModal;
+  finally
+    frmPesqVendas.Free;
+  end;
 end;
 
 procedure TfrmCadVendas.btnSalvarClick(Sender: TObject);
