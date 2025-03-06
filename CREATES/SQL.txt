@@ -4,9 +4,12 @@ CREATE TABLE CLIENTES (
     Nome_Cliente		VARCHAR(50)		NOT NULL,
     Telefone_Cliente	VARCHAR(11)		NOT NULL,
     Sexo_Cliente		CHAR(1),
+	Endereco_Cliente	VARCHAR(50)
 );
-    Endereco_Cliente	VARCHAR(50),
+
+
 SELECT * FROM CLIENTES;
+
 CREATE TABLE VENDAS (
     Cod_Venda			INTEGER			PRIMARY KEY IDENTITY,
     Cod_Cliente			INTEGER			NOT NULL,
@@ -17,6 +20,7 @@ CREATE TABLE VENDAS (
 	Status_Venda TINYINT CHECK (Status_Venda IN (0, 1, 2)),  -- 0 = Pendiente, 1 = Pago, 2 = Cancelado
     FOREIGN KEY (Cod_Cliente) REFERENCES CLIENTES(Cod_Cliente) ON DELETE CASCADE
 );
+
 SELECT * FROM VENDAS;
 
 CREATE TABLE PARCELAS (
@@ -30,8 +34,9 @@ CREATE TABLE PARCELAS (
 );
 SELECT * FROM PARCELAS;
 
-------------------------------- VIEW -----------------------------------------
 
+
+------------------------------- VIEW -----------------------------------------
 CREATE VIEW VENDAS_VIEW 
 AS
     SELECT 
@@ -58,8 +63,8 @@ AS
 
 SELECT * FROM VENDAS_VIEW;
 
---------------------------------- TRIGGER --------------------------------------
 
+--------------------------------- TRIGGER --------------------------------------
 CREATE TRIGGER TRG_GERAR_PARCELAS
 	ON VENDAS
 	AFTER INSERT
@@ -93,4 +98,49 @@ CREATE TRIGGER TRG_GERAR_PARCELAS
 	        END
 	    END
 	END;
-	
+
+
+
+
+
+-------- PESQUISAR PARCELAS ---------------
+SELECT 
+	C.Nome_Cliente,
+	C.Endereco_Cliente,
+	V.Valor_Total_Venda,
+	P.Data_Vencimento_Parcela,
+	P.Valor_Parcela
+FROM CLIENTES C
+INNER JOIN VENDAS V
+ON C.Cod_Cliente  = V.Cod_Cliente
+INNER JOIN PARCELAS P
+ON V.Cod_Venda = P.Cod_Venda
+WHERE MONTH(P.Data_Vencimento_Parcela) = 5
+AND YEAR(P.Data_Vencimento_Parcela) = 2025;
+
+
+-------------- DELPHI -----------------------
+SELECT 
+	C.Nome_Cliente,
+	C.Endereco_Cliente,
+	V.Valor_Total_Venda,
+	P.Data_Vencimento_Parcela,
+	P.Valor_Parcela
+FROM CLIENTES C
+INNER JOIN VENDAS V
+ON C.Cod_Cliente  = V.Cod_Cliente
+INNER JOIN PARCELAS P
+ON V.Cod_Venda = P.Cod_Venda
+WHERE MONTH(P.Data_Vencimento_Parcela) = :Mes
+AND YEAR(P.Data_Vencimento_Parcela) = :Ano;
+
+SELECT * FROM PARCELAS;
+
+
+
+----- ATUALIZA O STATUS DA PARCELA -----------
+UPDATE	PARCELAS
+SET		Status_Parcela = 1
+WHERE	MONTH(Data_Vencimento_Parcela) = 4
+AND		YEAR(Data_Vencimento_Parcela) = 2025
+AND		Cod_Venda = 4

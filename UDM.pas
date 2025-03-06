@@ -23,6 +23,11 @@ type
     qryCadVendasQtd_Parcelas_Venda: TIntegerField;
     qryCadVendasStatus_Venda: TWordField;
     qryPesqParcelas: TADOQuery;
+    qryPesqParcelasNome_Cliente: TStringField;
+    qryPesqParcelasEndereco_Cliente: TStringField;
+    qryPesqParcelasValor_Total_Venda: TBCDField;
+    qryPesqParcelasData_Vencimento_Parcela: TWideStringField;
+    qryPesqParcelasValor_Parcela: TBCDField;
   private
     { Private declarations }
   public
@@ -36,7 +41,7 @@ implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
-uses UCadClientes;
+uses UCadClientes, UPesqVendas;
 
 {$R *.dfm}
 

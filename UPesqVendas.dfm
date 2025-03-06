@@ -31,12 +31,44 @@ object frmPesqVendas: TfrmPesqVendas
     Top = 58
     Width = 689
     Height = 313
+    DataSource = dsPesqParcela
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'Nome_Cliente'
+        Width = 187
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Endereco_Cliente'
+        Width = 120
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Valor_Total_Venda'
+        Width = 110
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Data_Vencimento_Parcela'
+        Width = 118
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'Valor_Parcela'
+        Width = 109
+        Visible = True
+      end>
   end
   object btnPesquisar: TBitBtn
     Left = 552
@@ -163,6 +195,7 @@ object frmPesqVendas: TfrmPesqVendas
     NumGlyphs = 2
     ParentFont = False
     TabOrder = 1
+    OnClick = btnPesquisarClick
   end
   object cbbMes: TComboBox
     Left = 233
@@ -178,20 +211,20 @@ object frmPesqVendas: TfrmPesqVendas
     TabOrder = 2
     Text = 'M'#202'S'
     Items.Strings = (
-      'JANEIRO'
-      'FFEVEREIRO'
-      'MAR'#199'O'
-      'ABRIL'
-      'MAIO'
-      'JUNHO'
-      'JULHO'
-      'AGOSTO'
-      'SETEMBRO'
-      'OUTUBRO'
-      'NOVEMBRO'
-      'DEZEMBRO')
+      '1'
+      '2'
+      '3'
+      '4'
+      '5'
+      '6'
+      '7'
+      '8'
+      '9'
+      '10'
+      '11'
+      '12')
   end
-  object ComboBox1: TComboBox
+  object cbAno: TComboBox
     Left = 393
     Top = 21
     Width = 145
@@ -352,5 +385,10 @@ object frmPesqVendas: TfrmPesqVendas
     NumGlyphs = 2
     ParentFont = False
     TabOrder = 4
+  end
+  object dsPesqParcela: TDataSource
+    DataSet = DM.qryPesqParcelas
+    Left = 376
+    Top = 400
   end
 end

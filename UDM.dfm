@@ -96,6 +96,7 @@ object DM: TDM
   end
   object qryPesqParcelas: TADOQuery
     Connection = Conexao
+    CursorType = ctStatic
     Parameters = <
       item
         Name = 'Mes'
@@ -126,8 +127,31 @@ object DM: TDM
       'INNER JOIN PARCELAS P'
       'ON V.Cod_Venda = P.Cod_Venda'
       'WHERE MONTH(P.Data_Vencimento_Parcela) = :Mes'
-      'AND YEAR(P.Data_Vencimento_Parcela) = :Ano')
+      'AND YEAR(P.Data_Vencimento_Parcela) = :Ano'
+      'AND P.Status_Parcela  = 0')
     Left = 48
     Top = 144
+    object qryPesqParcelasNome_Cliente: TStringField
+      FieldName = 'Nome_Cliente'
+      Size = 50
+    end
+    object qryPesqParcelasEndereco_Cliente: TStringField
+      FieldName = 'Endereco_Cliente'
+      Size = 50
+    end
+    object qryPesqParcelasValor_Total_Venda: TBCDField
+      FieldName = 'Valor_Total_Venda'
+      Precision = 10
+      Size = 2
+    end
+    object qryPesqParcelasData_Vencimento_Parcela: TWideStringField
+      FieldName = 'Data_Vencimento_Parcela'
+      Size = 10
+    end
+    object qryPesqParcelasValor_Parcela: TBCDField
+      FieldName = 'Valor_Parcela'
+      Precision = 10
+      Size = 2
+    end
   end
 end
