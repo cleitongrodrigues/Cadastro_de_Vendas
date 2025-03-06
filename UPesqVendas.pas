@@ -9,7 +9,7 @@ uses
 
 type
   TfrmPesqVendas = class(TForm)
-    DBGrid1: TDBGrid;
+    dbgVendas: TDBGrid;
     btnPesquisar: TBitBtn;
     Label1: TLabel;
     cbbMes: TComboBox;

@@ -94,4 +94,40 @@ object DM: TDM
       FieldName = 'Status_Venda'
     end
   end
+  object qryPesqParcelas: TADOQuery
+    Connection = Conexao
+    Parameters = <
+      item
+        Name = 'Mes'
+        Attributes = [paSigned, paNullable]
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'Ano'
+        Attributes = [paSigned, paNullable]
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end>
+    SQL.Strings = (
+      'SELECT '
+      #9'C.Nome_Cliente,'
+      #9'C.Endereco_Cliente,'
+      #9'V.Valor_Total_Venda,'
+      #9'P.Data_Vencimento_Parcela,'
+      #9'P.Valor_Parcela'
+      'FROM CLIENTES C'
+      'INNER JOIN VENDAS V'
+      'ON C.Cod_Cliente  = V.Cod_Cliente'
+      'INNER JOIN PARCELAS P'
+      'ON V.Cod_Venda = P.Cod_Venda'
+      'WHERE MONTH(P.Data_Vencimento_Parcela) = :Mes'
+      'AND YEAR(P.Data_Vencimento_Parcela) = :Ano')
+    Left = 48
+    Top = 144
+  end
 end

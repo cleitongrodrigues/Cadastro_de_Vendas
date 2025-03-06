@@ -26,7 +26,7 @@ object frmPesqVendas: TfrmPesqVendas
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object DBGrid1: TDBGrid
+  object dbgVendas: TDBGrid
     Left = 8
     Top = 58
     Width = 689

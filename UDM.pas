@@ -22,6 +22,7 @@ type
     qryCadVendasValor_Total_Venda: TBCDField;
     qryCadVendasQtd_Parcelas_Venda: TIntegerField;
     qryCadVendasStatus_Venda: TWordField;
+    qryPesqParcelas: TADOQuery;
   private
     { Private declarations }
   public
