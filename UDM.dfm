@@ -154,4 +154,10 @@ object DM: TDM
       Size = 2
     end
   end
+  object qryPagarParcela: TADOQuery
+    Connection = Conexao
+    Parameters = <>
+    Left = 136
+    Top = 144
+  end
 end

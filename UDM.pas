@@ -28,6 +28,7 @@ type
     qryPesqParcelasValor_Total_Venda: TBCDField;
     qryPesqParcelasData_Vencimento_Parcela: TWideStringField;
     qryPesqParcelasValor_Parcela: TBCDField;
+    qryPagarParcela: TADOQuery;
   private
     { Private declarations }
   public
