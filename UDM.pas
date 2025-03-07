@@ -23,12 +23,13 @@ type
     qryCadVendasQtd_Parcelas_Venda: TIntegerField;
     qryCadVendasStatus_Venda: TWordField;
     qryPesqParcelas: TADOQuery;
+    qryPagarParcela: TADOQuery;
+    qryPesqParcelasCod_Venda: TAutoIncField;
     qryPesqParcelasNome_Cliente: TStringField;
     qryPesqParcelasEndereco_Cliente: TStringField;
     qryPesqParcelasValor_Total_Venda: TBCDField;
     qryPesqParcelasData_Vencimento_Parcela: TWideStringField;
     qryPesqParcelasValor_Parcela: TBCDField;
-    qryPagarParcela: TADOQuery;
   private
     { Private declarations }
   public

@@ -32,6 +32,7 @@ object frmPesqVendas: TfrmPesqVendas
     Width = 689
     Height = 313
     DataSource = dsPesqParcela
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -41,32 +42,38 @@ object frmPesqVendas: TfrmPesqVendas
     Columns = <
       item
         Expanded = False
+        FieldName = 'Cod_Venda'
+        Width = 60
+        Visible = True
+      end
+      item
+        Expanded = False
         FieldName = 'Nome_Cliente'
-        Width = 187
+        Width = 158
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Endereco_Cliente'
-        Width = 120
+        Width = 125
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Valor_Total_Venda'
-        Width = 110
+        Width = 100
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Data_Vencimento_Parcela'
-        Width = 118
+        Width = 100
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Valor_Parcela'
-        Width = 109
+        Width = 100
         Visible = True
       end>
   end
@@ -385,10 +392,16 @@ object frmPesqVendas: TfrmPesqVendas
     NumGlyphs = 2
     ParentFont = False
     TabOrder = 4
+    OnClick = btnPagarClick
   end
   object dsPesqParcela: TDataSource
     DataSet = DM.qryPesqParcelas
-    Left = 376
-    Top = 400
+    Left = 296
+    Top = 384
+  end
+  object dsPagarParcela: TDataSource
+    DataSet = DM.qryPagarParcela
+    Left = 448
+    Top = 392
   end
 end

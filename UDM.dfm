@@ -116,6 +116,7 @@ object DM: TDM
       end>
     SQL.Strings = (
       'SELECT '
+      '                V.Cod_Venda,'
       #9'C.Nome_Cliente,'
       #9'C.Endereco_Cliente,'
       #9'V.Valor_Total_Venda,'
@@ -131,6 +132,10 @@ object DM: TDM
       'AND P.Status_Parcela  = 0')
     Left = 48
     Top = 144
+    object qryPesqParcelasCod_Venda: TAutoIncField
+      FieldName = 'Cod_Venda'
+      ReadOnly = True
+    end
     object qryPesqParcelasNome_Cliente: TStringField
       FieldName = 'Nome_Cliente'
       Size = 50
@@ -156,7 +161,28 @@ object DM: TDM
   end
   object qryPagarParcela: TADOQuery
     Connection = Conexao
-    Parameters = <>
+    Parameters = <
+      item
+        Name = 'Cod_Venda'
+        Attributes = [paSigned]
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'DataVenc'
+        DataType = ftInteger
+        NumericScale = 255
+        Precision = 255
+        Size = 10
+        Value = Null
+      end>
+    SQL.Strings = (
+      'UPDATE PARCELAS '
+      'SET Status_Parcela = 1'
+      'WHERE Cod_Venda = :Cod_Venda'
+      'AND Data_Vencimento_Parcela = :DataVenc')
     Left = 136
     Top = 144
   end

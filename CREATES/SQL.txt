@@ -139,8 +139,26 @@ SELECT * FROM PARCELAS;
 
 
 ----- ATUALIZA O STATUS DA PARCELA -----------
-UPDATE	PARCELAS
-SET		Status_Parcela = 1
-WHERE	MONTH(Data_Vencimento_Parcela) = 4
-AND		YEAR(Data_Vencimento_Parcela) = 2025
-AND		Cod_Venda = 4
+UPDATE PARCELAS 
+SET Status_Parcela = 1
+WHERE Cod_Venda = :Cod_Venda
+AND Data_Vencimento_Parcela = :DataVenc
+
+
+select * from PARCELAS
+
+SELECT 
+    V.Cod_Venda,
+	C.Nome_Cliente,
+	C.Endereco_Cliente,
+	V.Valor_Total_Venda,
+	P.Data_Vencimento_Parcela,
+	P.Valor_Parcela
+FROM CLIENTES C
+INNER JOIN VENDAS V
+ON C.Cod_Cliente  = V.Cod_Cliente
+INNER JOIN PARCELAS P
+ON V.Cod_Venda = P.Cod_Venda
+WHERE MONTH(P.Data_Vencimento_Parcela) = :Mes
+AND YEAR(P.Data_Vencimento_Parcela) = :Ano
+AND P.Status_Parcela  = 0
